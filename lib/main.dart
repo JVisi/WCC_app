@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:waifucarecenter/config/core.dart';
-import 'package:waifucarecenter/userAuth/login.dart';
+import 'package:flutter/services.dart';
+import 'package:wccapp/config/core.dart';
+import 'package:wccapp/userAuth/login.dart';
 
-
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]).then((_) =>
+      runApp(MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -16,7 +23,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(), ///check memory
+      home: LoginScreen(),
+
+      ///check memory
     );
   }
 }
