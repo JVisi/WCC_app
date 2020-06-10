@@ -31,3 +31,8 @@ class SizeConfig {
     safeBlockVertical = (screenHeight - _safeAreaVertical)/100;
   }
 }
+
+class WebConfig{
+  static String url ="http://192.168.1.66:3000";
+  static String authKey="zseni";
+}

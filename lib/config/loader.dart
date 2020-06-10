@@ -31,7 +31,7 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
             SnapshotManager<T>(
                 snapshot: snapshot,
                 onError: <T>(T error) =>
-                    showErrorWidget(error.toString(), Icons.error),
+                    showErrorWidget(error==null?null:error.toString(), Icons.error),
                 onSuccess: (T data) => widget.succeeding(data),
                 onWait: showLoadingWidget(null, null, null)));
   }
@@ -101,6 +101,6 @@ class SnapshotManager<T> extends StatelessWidget {
     if (snapshot.hasData) {
       return this.onSuccess(snapshot.data);
     }
-    return this.onError(snapshot.data);
+    return this.onError(snapshot.error);
   }
 }
