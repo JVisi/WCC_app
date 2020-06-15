@@ -5,10 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:wccapp/config/core.dart';
 import 'package:wccapp/config/loader.dart';
+import 'package:wccapp/config/model.dart';
 import 'package:wccapp/models/badRequest.dart';
 import 'package:wccapp/models/user.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class RequestLogin<T> {
+class RequestLogin<T> extends Model {
   final String email;
   final String password;
   final bool keepLogin;
@@ -35,7 +37,7 @@ class RequestLogin<T> {
         BadRequest br=BadRequest.fromJson(jsonDecode(response.body));
         return Future.error(br.message);
       }catch(err){
-          return Future.error(null);
+          return Future.error(err);
       }
     }
   }

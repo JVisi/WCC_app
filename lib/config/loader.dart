@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:wccapp/config/core.dart';
 
 class LoadingHandler<T> extends StatefulWidget {
   final Future<T> Function() future;
@@ -43,21 +44,30 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
   }
   Widget showErrorWidget(String name, IconData icon){
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Spacer(
-              flex: 1,
-            ),
-            Icon(icon != null ? icon : Icons.warning,color: Colors.red,),
-            Text(name != null ? name : "Error"),
-            RaisedButton(
-              child: Text("RETRY"),
-              onPressed: refresh,
-            ),
-            Spacer(
-              flex: 2,
-            )
-          ],
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              Spacer(
+                flex: 2,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical:SizeConfig.blockSizeVertical),
+                child: Icon(icon != null ? icon : Icons.warning,color: Colors.red,size: themeConfig().iconTheme.size),
+              ),
+              Text(name != null ? name : "An unknown error occured",style: themeConfig().textTheme.bodyText1,),
+              Padding(
+                padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*5),
+                child: RaisedButton(
+                  child: Text("RETRY",
+                      style: themeConfig().textTheme.bodyText1,),
+                  onPressed: refresh,
+                ),
+              ),
+              Spacer(
+                flex: 3,
+              )
+            ],
+          ),
         ));
   }
   Widget showLoadingWidget(String name, String desc, IconData icon) {
@@ -69,11 +79,11 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
         ),
         SpinKitWave(
           color: Colors.blue,
-          size: 50.0,
+          size: SizeConfig.blockSizeVertical*10,
         ),
-        Icon(icon != null ? icon : Icons.hourglass_empty),
-        Text(name != null ? name : "Now Loading..."),
-        Text(desc != null ? desc : ""),
+        Icon(icon != null ? icon : Icons.hourglass_empty, size: themeConfig().iconTheme.size,),
+        Text(name != null ? name : "Now Loading...",style: themeConfig().textTheme.bodyText1,),
+        Text(desc != null ? desc : "",style: themeConfig().textTheme.bodyText1,),
         Spacer(
           flex: 2,
         )
