@@ -1,0 +1,69 @@
+{
+  "@@last_modified": "2020-06-27T13:56:12.015355",
+  "loading": "Loading...",
+  "@loading": {
+    "description": "The text on the loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reload": "Reload",
+  "@reload": {
+    "description": "The text on reloading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "Wrong username or password",
+  "@loginError": {
+    "description": "The text when password or username is not correct",
+    "type": "text",
+    "placeholders": {}
+  },
+  "serverError": "Can't reach the server. Check your internet connection",
+  "@serverError": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveLoginData": "Save login data",
+  "@saveLoginData": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "havingAccount": "Already have an account? Sign in here!",
+  "@havingAccount": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontHaveAccount": "Don't have an account? Sign up here!",
+  "@dontHaveAccount": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginButton": "Login",
+  "@loginButton": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "@@last_modified": "2020-06-27T13:56:12.015355",
+  "loading": "Töltés...",
+  "@loading": {
+    "description": "The text on the loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reload": "Újratölt",
+  "@reload": {
+    "description": "The text on reloading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "Hibás email-cím vagy jelszó",
+  "@loginError": {
+    "description": "The text when password or username is not correct",
+    "type": "text",
+    "placeholders": {}
+  },
+  "serverError": "A szerver nem elérhető. Ellenőrizd az internetkapcsolatot",
+  "@serverError": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveLoginData": "Adatok mentése?",
+  "@saveLoginData": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "havingAccount": "Már van fiókja? Jelentkezzen be!",
+  "@havingAccount": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontHaveAccount": "Még nincs fiókja? Készítsen egyet itt!",
+  "@dontHaveAccount": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginButton": "Bejelentkezés",
+  "@loginButton": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerButton": "Regisztráció",
+  "@registerButton": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Jelszó",
+  "@password": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  }
+}

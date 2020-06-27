@@ -10,7 +10,7 @@ import 'package:wccapp/models/badRequest.dart';
 import 'package:wccapp/models/user.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class RequestLogin<T> extends Model {
+class RequestLogin<T> {
   final String email;
   final String password;
   final bool keepLogin;

@@ -6,8 +6,10 @@ import 'package:wccapp/config/core.dart';
 class LoadingHandler<T> extends StatefulWidget {
   final Future<T> Function() future;
   final Widget Function(T data) succeeding;
+  final Widget onError;
 
-  LoadingHandler({@required this.future, @required this.succeeding});
+  LoadingHandler(
+      {@required this.future, @required this.succeeding, this.onError});
 
   @override
   LoadingHandlerState<T> createState() => LoadingHandlerState();
@@ -25,14 +27,20 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     // TODO: implement build
     return FutureBuilder<T>(
         future: _future,
         builder: (BuildContext context, AsyncSnapshot<T> snapshot) =>
             SnapshotManager<T>(
                 snapshot: snapshot,
-                onError: <T>(T error) =>
-                    showErrorWidget(error==null?null:error.toString(), Icons.error),
+                onError: <T>(T error) {
+                  if (widget.onError != null) {
+                    return widget.onError;
+                  }
+                  return showErrorWidget(
+                      error == null ? null : error.toString(), Icons.error);
+                },
                 onSuccess: (T data) => widget.succeeding(data),
                 onWait: showLoadingWidget(null, null, null)));
   }
@@ -42,34 +50,43 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
       this._future = widget.future();
     });
   }
-  Widget showErrorWidget(String name, IconData icon){
+
+  Widget showErrorWidget(String name, IconData icon) {
     return Scaffold(
         body: Center(
-          child: Column(
-            children: <Widget>[
-              Spacer(
-                flex: 2,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical:SizeConfig.blockSizeVertical),
-                child: Icon(icon != null ? icon : Icons.warning,color: Colors.red,size: themeConfig().iconTheme.size),
-              ),
-              Text(name != null ? name : "An unknown error occured",style: themeConfig().textTheme.bodyText1,),
-              Padding(
-                padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*5),
-                child: RaisedButton(
-                  child: Text("RETRY",
-                      style: themeConfig().textTheme.bodyText1,),
-                  onPressed: refresh,
-                ),
-              ),
-              Spacer(
-                flex: 3,
-              )
-            ],
+      child: Column(
+        children: <Widget>[
+          Spacer(
+            flex: 2,
           ),
-        ));
+          Padding(
+            padding:
+                EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical),
+            child: Icon(icon != null ? icon : Icons.warning,
+                color: Colors.red, size: themeConfig().iconTheme.size),
+          ),
+          Text(
+            name != null ? name : "An unknown error occured",
+            style: themeConfig().textTheme.bodyText1,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5),
+            child: RaisedButton(
+              child: Text(
+                "RETRY",
+                style: themeConfig().textTheme.bodyText1,
+              ),
+              onPressed: refresh,
+            ),
+          ),
+          Spacer(
+            flex: 3,
+          )
+        ],
+      ),
+    ));
   }
+
   Widget showLoadingWidget(String name, String desc, IconData icon) {
     return Scaffold(
         body: Column(
@@ -79,11 +96,20 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
         ),
         SpinKitWave(
           color: Colors.blue,
-          size: SizeConfig.blockSizeVertical*10,
+          size: SizeConfig.blockSizeVertical * 10,
         ),
-        Icon(icon != null ? icon : Icons.hourglass_empty, size: themeConfig().iconTheme.size,),
-        Text(name != null ? name : "Now Loading...",style: themeConfig().textTheme.bodyText1,),
-        Text(desc != null ? desc : "",style: themeConfig().textTheme.bodyText1,),
+        Icon(
+          icon != null ? icon : Icons.hourglass_empty,
+          size: themeConfig().iconTheme.size,
+        ),
+        Text(
+          name != null ? name : "Now Loading...",
+          style: themeConfig().textTheme.bodyText1,
+        ),
+        Text(
+          desc != null ? desc : "",
+          style: themeConfig().textTheme.bodyText1,
+        ),
         Spacer(
           flex: 2,
         )

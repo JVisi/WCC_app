@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wccapp/Web/login.dart';
 import 'package:wccapp/config/core.dart';
+import 'package:wccapp/config/lang/locals.dart';
 import 'package:wccapp/config/loader.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:wccapp/config/model.dart';
@@ -12,9 +14,7 @@ import 'package:wccapp/models/user.dart';
 class LoginScreen extends StatefulWidget {
   @override
   LoginState createState() => LoginState();
-
 }
-
 
 class LoginState extends State<LoginScreen> {
   final email = TextEditingController();
@@ -45,8 +45,9 @@ class LoginState extends State<LoginScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*10),
+              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 10),
               child: ListView(
+                physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
                 children: <Widget>[
                   Padding(
@@ -62,7 +63,7 @@ class LoginState extends State<LoginScreen> {
                         child: TextFormField(
                           style: themeConfig().textTheme.bodyText1,
                           decoration: InputDecoration(
-                              hintText: "E-mail",
+                              hintText: AppLocalizations.of(context).email,
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.only(left: 10)),
                           controller: this.email,
@@ -84,7 +85,7 @@ class LoginState extends State<LoginScreen> {
                           style: themeConfig().textTheme.bodyText1,
                           obscureText: true,
                           decoration: InputDecoration(
-                              hintText: "Password",
+                              hintText:AppLocalizations.of(context).password,
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.only(left: 10)),
                           controller: this.password,
@@ -97,7 +98,7 @@ class LoginState extends State<LoginScreen> {
                     children: <Widget>[
                       GestureDetector(
                           onTap: () => changeLoginSave(!keepLoginData),
-                          child: Text("Save login data",
+                          child: Text(AppLocalizations.of(context).saveLoginData,
                               style: themeConfig().textTheme.bodyText1)),
                       Checkbox(
                           value: keepLoginData,
@@ -106,8 +107,9 @@ class LoginState extends State<LoginScreen> {
                   ),
                   Center(
                     child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, "/registerPage"),
-                      child: Text("Don't have an account? Sign up here",
+                      onTap: () =>
+                          Navigator.pushNamed(context, "/registerPage"),
+                      child: Text(AppLocalizations.of(context).dontHaveAccount,
                           style: themeConfig().textTheme.bodyText1),
                     ),
                   ),
@@ -128,7 +130,7 @@ class LoginState extends State<LoginScreen> {
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Login",
+                                AppLocalizations.of(context).loginButton,
                                 style: themeConfig().textTheme.bodyText1,
                               ),
                             ),
@@ -138,22 +140,11 @@ class LoginState extends State<LoginScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            LoadingHandler<User>(
-                                              future: RequestLogin(
-                                                      email: this.email.text,
-                                                      password:
-                                                          this.password.text,
-                                                      keepLogin:keepLoginData)
-                                                  .send,
-                                              succeeding: (User data) {
-                                                AppModel.of(context).setUser(data);
-                                                ///save user to scope and go on
-                                                return Scaffold(
-                                                  body: Text(AppModel.of(context).getUser().email),
-                                                );
-                                              },
-                                            )));
+                                        builder: (context) => login(
+                                            this.email.text,
+                                            this.password.text,
+                                            keepLoginData,
+                                            context)));
                               }
                             },
                           ),
@@ -173,14 +164,31 @@ class LoginState extends State<LoginScreen> {
     );
   }
 
+  login(String email, String password, bool keepLogin, BuildContext context, [Widget onError]) {
+    return LoadingHandler<User>(
+      future:
+          RequestLogin(email: email, password: password, keepLogin: keepLogin)
+              .send,
+      succeeding: (User data) {
+        AppModel.of(context).setUser(data);
+        return Scaffold(
+          body: Text(AppModel.of(context).getUser().email),
+        );
+      },
+      onError: onError,
+    );
+  }
+
   void changeLoginSave(bool val) {
     setState(() {
       keepLoginData = val;
     });
   }
+
   bool checkEmail() {
     return EmailValidator.validate(this.email.text);
   }
+
   bool checkPassword() {
     return this.password.text.length > 2;
   }
