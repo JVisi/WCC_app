@@ -2,11 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wccapp/userAuth/login.dart';
 import 'package:wccapp/userAuth/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final routes = {
   '/loginPage': (context) => LoginScreen(),
   '/registerPage': (context) => RegisterScreen(),
 };
+
+saveLoginData(email,password) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('email', email);
+  await prefs.setString('password', password);
+}
 
 class SizeConfig {
   static MediaQueryData _mediaQueryData;
@@ -35,7 +42,7 @@ class SizeConfig {
 }
 
 class WebConfig {
-  static String url = "http://192.168.1.66:3000";
+  static String url = "http://192.168.1.68:3000";
   static String authKey = "zseni";
 }
 

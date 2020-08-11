@@ -8,6 +8,8 @@ class AppModel extends Model{
   void setUser(User currentUser)=>this._user=currentUser;
   User getUser()=>this._user;
 
+
+
   Future<Map<String, String>> loadLogin() async {
     SharedPreferences prefs=await SharedPreferences.getInstance();
     return {"email":prefs.getString("email"),"password":prefs.getString("password")};

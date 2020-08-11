@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -85,7 +84,7 @@ class LoginState extends State<LoginScreen> {
                           style: themeConfig().textTheme.bodyText1,
                           obscureText: true,
                           decoration: InputDecoration(
-                              hintText:AppLocalizations.of(context).password,
+                              hintText: AppLocalizations.of(context).password,
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.only(left: 10)),
                           controller: this.password,
@@ -93,24 +92,34 @@ class LoginState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      GestureDetector(
-                          onTap: () => changeLoginSave(!keepLoginData),
-                          child: Text(AppLocalizations.of(context).saveLoginData,
-                              style: themeConfig().textTheme.bodyText1)),
-                      Checkbox(
-                          value: keepLoginData,
-                          onChanged: (bool _val) => changeLoginSave(_val)),
-                    ],
+                  Container(
+                    decoration:
+                        BoxDecoration(color: Colors.white.withOpacity(0.6)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(
+                            onTap: () => changeLoginSave(!keepLoginData),
+                            child: Text(
+                                AppLocalizations.of(context).saveLoginData,
+                                style: themeConfig().textTheme.bodyText1)),
+                        Checkbox(
+                            value: keepLoginData,
+                            onChanged: (bool _val) => changeLoginSave(_val)),
+                      ],
+                    ),
                   ),
                   Center(
-                    child: GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, "/registerPage"),
-                      child: Text(AppLocalizations.of(context).dontHaveAccount,
-                          style: themeConfig().textTheme.bodyText1),
+                    child: Container(
+                      decoration:
+                          BoxDecoration(color: Colors.white.withOpacity(0.6)),
+                      child: GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, "/registerPage"),
+                        child: Text(
+                            AppLocalizations.of(context).dontHaveAccount,
+                            style: themeConfig().textTheme.bodyText1),
+                      ),
                     ),
                   ),
                   Padding(
@@ -122,13 +131,13 @@ class LoginState extends State<LoginScreen> {
                           flex: 1,
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 side: BorderSide(color: Colors.black)),
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(15.0),
                               child: Text(
                                 AppLocalizations.of(context).loginButton,
                                 style: themeConfig().textTheme.bodyText1,
@@ -164,7 +173,8 @@ class LoginState extends State<LoginScreen> {
     );
   }
 
-  login(String email, String password, bool keepLogin, BuildContext context, [Widget onError]) {
+  login(String email, String password, bool keepLogin, BuildContext context,
+      [Widget onError]) {
     return LoadingHandler<User>(
       future:
           RequestLogin(email: email, password: password, keepLogin: keepLogin)
@@ -176,6 +186,7 @@ class LoginState extends State<LoginScreen> {
         );
       },
       onError: onError,
+      needReloadButton: true,
     );
   }
 

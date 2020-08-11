@@ -6,13 +6,13 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) {
-  return LoginRequest(
+AuthRequest _$LoginRequestFromJson(Map<String, dynamic> json) {
+  return AuthRequest(
     user: User.fromJson(json['user'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
+Map<String, dynamic> _$LoginRequestToJson(AuthRequest instance) =>
     <String, dynamic>{
       'user': instance.user,
     };

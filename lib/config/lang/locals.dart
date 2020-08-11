@@ -47,7 +47,7 @@ class AppLocalizations {
         name: "saveLoginData",
         desc: "The text when the app can't reach the server");
   }
-  String get havingAccount {
+  String get haveAccount {
     return Intl.message(
         "Already have an account? Sign in here!",
         name: "havingAccount",

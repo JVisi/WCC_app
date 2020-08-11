@@ -7,9 +7,10 @@ class LoadingHandler<T> extends StatefulWidget {
   final Future<T> Function() future;
   final Widget Function(T data) succeeding;
   final Widget onError;
+  final bool needReloadButton;
 
   LoadingHandler(
-      {@required this.future, @required this.succeeding, this.onError});
+      {@required this.future, @required this.succeeding, this.onError,this.needReloadButton});
 
   @override
   LoadingHandlerState<T> createState() => LoadingHandlerState();
@@ -17,12 +18,14 @@ class LoadingHandler<T> extends StatefulWidget {
 
 class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
   Future<T> _future;
+  bool needReloadButton;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _future = widget.future();
+    needReloadButton=widget.needReloadButton;
   }
 
   @override
@@ -39,7 +42,7 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
                     return widget.onError;
                   }
                   return showErrorWidget(
-                      error == null ? null : error.toString(), Icons.error);
+                      error == null ? null : error.toString(), Icons.error,needReloadButton==null?false:true);
                 },
                 onSuccess: (T data) => widget.succeeding(data),
                 onWait: showLoadingWidget(null, null, null)));
@@ -51,7 +54,7 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
     });
   }
 
-  Widget showErrorWidget(String name, IconData icon) {
+  Widget showErrorWidget(String name, IconData icon, bool needReloadBtn) {
     return Scaffold(
         body: Center(
       child: Column(
@@ -69,7 +72,7 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
             name != null ? name : "An unknown error occured",
             style: themeConfig().textTheme.bodyText1,
           ),
-          Padding(
+          needReloadBtn?Padding(
             padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5),
             child: RaisedButton(
               child: Text(
@@ -78,7 +81,15 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
               ),
               onPressed: refresh,
             ),
-          ),
+          ):Text(""),
+          Padding(
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5),
+                  child: FloatingActionButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Icon(Icons.arrow_back),
+                  ),
+                ),
           Spacer(
             flex: 3,
           )

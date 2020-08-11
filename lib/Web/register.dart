@@ -4,12 +4,12 @@ import 'package:wccapp/config/core.dart';
 import 'package:wccapp/models/badRequest.dart';
 import 'package:wccapp/models/user.dart';
 
-class RequestLogin<T> {
+class RequestRegister<T> {
   final String email;
   final String password;
   final bool keepLogin;
 
-  RequestLogin({this.email, this.password, this.keepLogin});
+  RequestRegister({this.email, this.password, this.keepLogin});
 
   Future<User> send() async {
     Map<String, String> headers = {
@@ -18,7 +18,7 @@ class RequestLogin<T> {
     };
     String body = jsonEncode({"email": this.email, "password": this.password});
     final response =
-        await http.post(WebConfig.url + "/login", headers: headers, body: body);
+    await http.post(WebConfig.url + "/register", headers: headers, body: body);
     try {
       AuthRequest log = AuthRequest.fromJson(jsonDecode(response.body));
       print(response.body);
@@ -31,7 +31,7 @@ class RequestLogin<T> {
         BadRequest br=BadRequest.fromJson(jsonDecode(response.body));
         return Future.error(br.message);
       }catch(err){
-          return Future.error(err);
+        return Future.error(err);
       }
     }
   }
