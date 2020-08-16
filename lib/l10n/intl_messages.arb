@@ -1,54 +1,60 @@
 {
-  "@@last_modified": "2020-06-27T13:56:12.015355",
-  "loading": "Töltés...",
+  "@@last_modified": "2020-08-16T16:40:36.937235",
+  "loading": "Loading...",
   "@loading": {
     "description": "The text on the loading",
     "type": "text",
     "placeholders": {}
   },
-  "reload": "Újratölt",
+  "reload": "Reload",
   "@reload": {
     "description": "The text on reloading",
     "type": "text",
     "placeholders": {}
   },
-  "loginError": "Hibás email-cím vagy jelszó",
+  "loginError": "Wrong username or password",
   "@loginError": {
     "description": "The text when password or username is not correct",
     "type": "text",
     "placeholders": {}
   },
-  "serverError": "A szerver nem elérhető. Ellenőrizd az internetkapcsolatot",
+  "serverError": "Can't reach the server. Check your internet connection",
   "@serverError": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "saveLoginData": "Adatok mentése?",
+  "unknownError": "An unknown error occurred",
+  "@unknownError": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveLoginData": "Save login data",
   "@saveLoginData": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "haveAccount": "Már van fiókja? Jelentkezzen be!",
+  "haveAccount": "Already have an account? Sign in here!",
   "@haveAccount": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "dontHaveAccount": "Még nincs fiókja? Készítsen egyet itt!",
+  "dontHaveAccount": "Don't have an account? Sign up here!",
   "@dontHaveAccount": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "loginButton": "Bejelentkezés",
+  "loginButton": "Login",
   "@loginButton": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "registerButton": "Regisztráció",
+  "registerButton": "Register",
   "@registerButton": {
     "description": "The text when the app can't reach the server",
     "type": "text",
@@ -60,38 +66,32 @@
     "type": "text",
     "placeholders": {}
   },
-  "password": "Jelszó",
+  "password": "Password",
   "@password": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
   },
-  "createCharacterBtn": "Létrehoz",
+  "createCharacterBtn": "Create",
   "@createCharacterBtn": {
     "description": "CreateCharacter button",
     "type": "text",
     "placeholders": {}
   },
-  "createCharacter": "A karaktered neve",
+  "createCharacter": "Name your character",
   "@createCharacter": {
     "description": "CreateCharacter button",
     "type": "text",
     "placeholders": {}
   },
-  "characterNameError": "Ez a név már használatban van",
+  "characterNameError": "This name is already in use",
   "@characterNameError": {
     "description": "character's name is already taken",
     "type": "text",
     "placeholders": {}
   },
-  "createCharacterTitle": "Nevezd el és hozd létre a karaktered!",
+  "createCharacterTitle": "Name and Create your character!",
   "@createCharacterTitle": {
-    "description": "The text when the app can't reach the server",
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownError": "Ismeretlen hiba történt.",
-  "@unknownError": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}

@@ -9,8 +9,8 @@ class AuthRequest{
 
   AuthRequest({this.user});
 
-  factory AuthRequest.fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
+  factory AuthRequest.fromJson(Map<String, dynamic> json) => _$AuthRequestFromJson(json);
+  Map<String, dynamic> toJson() => _$AuthRequestToJson(this);
 }
 
 @JsonSerializable(nullable: false)

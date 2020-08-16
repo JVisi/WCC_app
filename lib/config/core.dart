@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wccapp/Character/createCharacter.dart';
 import 'package:wccapp/userAuth/login.dart';
 import 'package:wccapp/userAuth/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,9 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 final routes = {
   '/loginPage': (context) => LoginScreen(),
   '/registerPage': (context) => RegisterScreen(),
+  '/createCharacterPage': (context) => CreateCharacter(),
 };
 
-saveLoginData(email,password) async {
+saveLoginData(email, password) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('email', email);
   await prefs.setString('password', password);
@@ -44,9 +46,14 @@ class SizeConfig {
 class WebConfig {
   static String url = "http://192.168.1.68:3000";
   static String authKey = "zseni";
+  static Map<String, String> headers = {
+    "authorization": WebConfig.authKey,
+    "Content-type": "application/json"
+  };
 }
 
 ThemeData themeConfig() => ThemeData(
     iconTheme: IconThemeData(size: SizeConfig.blockSizeVertical * 7),
     textTheme: TextTheme(
+        bodyText2: TextStyle(fontSize: SizeConfig.blockSizeVertical * 5, fontWeight: FontWeight.bold),
         bodyText1: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.5)));

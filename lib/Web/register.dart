@@ -12,13 +12,10 @@ class RequestRegister<T> {
   RequestRegister({this.email, this.password, this.keepLogin});
 
   Future<User> send() async {
-    Map<String, String> headers = {
-      "authorization": WebConfig.authKey,
-      "Content-type": "application/json"
-    };
+
     String body = jsonEncode({"email": this.email, "password": this.password});
     final response =
-    await http.post(WebConfig.url + "/register", headers: headers, body: body);
+    await http.post(WebConfig.url + "/register", headers: WebConfig.headers, body: body);
     try {
       AuthRequest log = AuthRequest.fromJson(jsonDecode(response.body));
       print(response.body);

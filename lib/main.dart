@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      supportedLocales: [Locale('hu', 'HU'), Locale('en', 'US')],
       localizationsDelegates: [
         AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      supportedLocales: [Locale('hu', 'HU'), Locale('en', 'US')],
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: routes,
@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
       ),
       home: Start(),
 
-      ///check memory
     );
   }
 }

@@ -201,7 +201,7 @@ class RegisterState extends State<RegisterScreen> {
       succeeding: (User data) {
         AppModel.of(context).setUser(data);
         return Scaffold(
-          body: Text(AppModel.of(context).getUser().email),
+          body: Text(AppModel.of(context).getUser().id + "  " + AppModel.of(context).getUser().email),
         );
       },
       onError: onError,
@@ -216,7 +216,6 @@ class RegisterState extends State<RegisterScreen> {
   }
 
   bool checkEmail() {
-    print(this.email.text);
     return true;
   }
 

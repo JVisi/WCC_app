@@ -30,8 +30,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "havingAccount": "Already have an account? Sign in here!",
-  "@havingAccount": {
+  "haveAccount": "Already have an account? Sign in here!",
+  "@haveAccount": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}
@@ -62,6 +62,36 @@
   },
   "password": "Password",
   "@password": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createCharacterBtn": "Create",
+  "@createCharacterBtn": {
+    "description": "CreateCharacter button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createCharacter": "Name your character",
+  "@createCharacter": {
+    "description": "CreateCharacter button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "characterNameError": "This name is already in use",
+  "@characterNameError": {
+    "description": "character's name is already taken",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createCharacterTitle": "Name and Create your character!",
+  "@createCharacterTitle": {
+    "description": "The text when the app can't reach the server",
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownError": "An unknown error occurred",
+  "@unknownError": {
     "description": "The text when the app can't reach the server",
     "type": "text",
     "placeholders": {}

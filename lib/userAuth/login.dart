@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wccapp/Character/createCharacter.dart';
 import 'package:wccapp/Web/login.dart';
 import 'package:wccapp/config/core.dart';
 import 'package:wccapp/config/lang/locals.dart';
@@ -181,14 +182,13 @@ class LoginState extends State<LoginScreen> {
               .send,
       succeeding: (User data) {
         AppModel.of(context).setUser(data);
-        return Scaffold(
-          body: Text(AppModel.of(context).getUser().email),
-        );
+        return getCharacter(context);
       },
       onError: onError,
       needReloadButton: true,
     );
   }
+
 
   void changeLoginSave(bool val) {
     setState(() {

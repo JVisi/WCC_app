@@ -40,7 +40,12 @@ class AppLocalizations {
         name: "serverError",
         desc: "The text when the app can't reach the server");
   }
-
+  String get unknownError {
+    return Intl.message(
+        "An unknown error occurred",
+        name: "unknownError",
+        desc: "The text when the app can't reach the server");
+  }
   String get saveLoginData {
     return Intl.message(
         "Save login data",
@@ -50,7 +55,7 @@ class AppLocalizations {
   String get haveAccount {
     return Intl.message(
         "Already have an account? Sign in here!",
-        name: "havingAccount",
+        name: "haveAccount",
         desc: "The text when the app can't reach the server");
   }
   String get dontHaveAccount {
@@ -59,7 +64,6 @@ class AppLocalizations {
         name: "dontHaveAccount",
         desc: "The text when the app can't reach the server");
   }
-
   String get loginButton {
     return Intl.message(
         "Login",
@@ -72,9 +76,6 @@ class AppLocalizations {
         name: "registerButton",
         desc: "The text when the app can't reach the server");
   }
-
-
-
   String get email {
     return Intl.message(
         "Email",
@@ -85,6 +86,30 @@ class AppLocalizations {
     return Intl.message(
         "Password",
         name: "password",
+        desc: "The text when the app can't reach the server");
+  }
+  String get createCharacterBtn {
+    return Intl.message(
+        "Create",
+        name: "createCharacterBtn",
+        desc: "CreateCharacter button");
+  }
+  String get createCharacter {
+    return Intl.message(
+        "Name your character",
+        name: "createCharacter",
+        desc: "CreateCharacter button");
+  }
+  String get characterNameError {
+    return Intl.message(
+        "This name is already in use",
+        name: "characterNameError",
+        desc: "character's name is already taken");
+  }
+  String get createCharacterTitle {
+    return Intl.message(
+        "Name and Create your character!",
+        name: "createCharacterTitle",
         desc: "The text when the app can't reach the server");
   }
 }

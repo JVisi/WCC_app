@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:wccapp/config/core.dart';
+import 'package:wccapp/config/lang/locals.dart';
 
 class LoadingHandler<T> extends StatefulWidget {
   final Future<T> Function() future;
@@ -69,14 +70,13 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
                 color: Colors.red, size: themeConfig().iconTheme.size),
           ),
           Text(
-            name != null ? name : "An unknown error occured",
+            name != null ? name : "An unknown error occured", ///Applocal
             style: themeConfig().textTheme.bodyText1,
           ),
           needReloadBtn?Padding(
             padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5),
             child: RaisedButton(
-              child: Text(
-                "RETRY",
+              child: Text(AppLocalizations.of(context).reload,
                 style: themeConfig().textTheme.bodyText1,
               ),
               onPressed: refresh,
@@ -114,7 +114,7 @@ class LoadingHandlerState<T> extends State<LoadingHandler<T>> {
           size: themeConfig().iconTheme.size,
         ),
         Text(
-          name != null ? name : "Now Loading...",
+          name != null ? name : AppLocalizations.of(context).loading,
           style: themeConfig().textTheme.bodyText1,
         ),
         Text(
