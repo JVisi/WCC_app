@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:wccapp/models/character.dart';
 import 'package:wccapp/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +9,9 @@ class AppModel extends Model{
   void setUser(User currentUser)=>this._user=currentUser;
   User getUser()=>this._user;
 
-
+  Character _character;
+  void setCharacter(Character currentChar)=>this._character=currentChar;
+  Character getCharacter()=>this._character;
 
   Future<Map<String, String>> loadLogin() async {
     SharedPreferences prefs=await SharedPreferences.getInstance();
