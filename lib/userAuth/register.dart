@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wccapp/Character/createCharacter.dart';
 import 'package:wccapp/Web/register.dart';
 import 'package:wccapp/config/core.dart';
 import 'package:wccapp/config/lang/locals.dart';
 import 'package:wccapp/config/loader.dart';
 import 'package:wccapp/config/model.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:wccapp/models/user.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -44,7 +46,7 @@ class RegisterState extends State<RegisterScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*10),
+              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 10),
               child: ListView(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
@@ -200,9 +202,7 @@ class RegisterState extends State<RegisterScreen> {
           .send,
       succeeding: (User data) {
         AppModel.of(context).setUser(data);
-        return Scaffold(
-          body: Text(AppModel.of(context).getUser().id + "  " + AppModel.of(context).getUser().email),
-        );
+        return getCharacter(context);
       },
       onError: onError,
       needReloadButton: true,
@@ -216,10 +216,10 @@ class RegisterState extends State<RegisterScreen> {
   }
 
   bool checkEmail() {
-    return true;
+    return EmailValidator.validate(this.email.text);
   }
 
   bool checkPassword() {
-    return true;
+    return this.password.text.length > 2;
   }
 }
