@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wccapp/Web/getCharacter.dart';
-import 'package:wccapp/Web/login.dart';
+import 'package:wccapp/Web/setCharacter.dart';
 import 'package:wccapp/config/core.dart';
 import 'package:wccapp/config/lang/locals.dart';
 import 'package:wccapp/config/loader.dart';
 import 'package:wccapp/config/model.dart';
 import 'package:wccapp/models/character.dart';
-import 'package:wccapp/models/user.dart';
-import 'package:wccapp/userAuth/register.dart';
 
 class CreateCharacter extends StatefulWidget {
   @override
@@ -58,7 +56,9 @@ class CreateCharacterState extends State<CreateCharacter> {
                               child: Padding(
                                 padding: EdgeInsets.all(
                                     SizeConfig.blockSizeVertical * 2.0),
-                                child: Text(AppLocalizations.of(context).createCharacterTitle,
+                                child: Text(
+                                  AppLocalizations.of(context)
+                                      .createCharacterTitle,
                                   style: themeConfig().textTheme.bodyText2,
                                 ),
                               ),
@@ -132,11 +132,11 @@ class CreateCharacterState extends State<CreateCharacter> {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) => setCharacter(
-                                                      this.name.text,
-                                                      this.name.text,
-                                                      true,
-                                                      context)));
+                                                  builder: (context) =>
+                                                      setCharacter(
+                                                        context,
+                                                        this.name.text,
+                                                      )));
                                         }
                                       },
                                     ),
@@ -173,43 +173,41 @@ class CreateCharacterState extends State<CreateCharacter> {
     );
   }
 
-  ///Obviously change it to setCharacter later
-  setCharacter(String email, String password, bool keepLogin, BuildContext context,
-      [Widget onError]) {
-    return LoadingHandler<User>(
-      future:
-          RequestLogin(email: email, password: password, keepLogin: keepLogin)
-              .send,
-      succeeding: (User data) {
-        AppModel.of(context).setUser(data);
-        //-----------------------------------------------------------
-        return LoadingHandler<Character>(
-          future: GetCharacter(AppModel.of(context).getUser().id).send,
-          succeeding: (Character ch) {return null;},
-          onError: onError,
-        );
-        //-----------------------------------------------------------
-        /*return Scaffold(
-          body: Text(AppModel.of(context).getUser().id),
-        );*/
-      },
-      onError: onError,
-      needReloadButton: true,
-    );
-  }
   bool checkName() {
     return this.name.text.length > 2;
   }
 }
-getCharacter(BuildContext context,
-    [Widget onError]) {
+
+getCharacter(BuildContext context, [Widget onError]) {
   return LoadingHandler<Character>(
     future: GetCharacter(AppModel.of(context).getUser().id).send,
     succeeding: (Character ch) {
-      ///set character to appModel and go to main game
-      return RegisterScreen();
+      AppModel.of(context).setCharacter(ch);
+
+      ///return the loader for the main game screen
+      return Scaffold(
+          body: RaisedButton(
+        child: Text("bacccckkkk"),
+        onPressed: () => Navigator.pop(context),
+      ));
     },
     onError: CreateCharacter(),
   );
 }
 
+setCharacter(BuildContext context, String name, [Widget onError]) {
+  return LoadingHandler<Character>(
+    future: SetCharacter(name, AppModel.of(context).getUser().id).send,
+    succeeding: (Character ch) {
+      AppModel.of(context).setCharacter(ch);
+
+      ///return the loader for main game screen
+      return Scaffold(
+          body: RaisedButton(
+        child: Text("back"),
+        onPressed: () => Navigator.pop(context),
+      ));
+    },
+    onError: onError,
+  );
+}
